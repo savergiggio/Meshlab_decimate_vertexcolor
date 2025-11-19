@@ -79,16 +79,6 @@ python script.py 100
 
 ---
 
-## 📏 Scalatura automatica
-
-Il lato più lungo della mesh viene scalato a **80 mm** (modificabile):
-```python
-TARGET_DIMENSION = 80.0
-```
-L’opzione `uniformflag=True` garantisce che le proporzioni rimangano corrette.
-
----
-
 ## 📄 Licenza
 
 MIT License — libero utilizzo per scopi personali e commerciali.
