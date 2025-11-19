@@ -1,48 +1,94 @@
 # GLB to OBJ Batch Converter (PyMeshLab Pipeline)
 
-Questo script Python consente di convertire automaticamente file
-**.glb** in **.obj**, applicando una pipeline di pulizia, decimazione,
-conversione dei colori e scalatura. È pensato per creare modelli
-ottimizzati per stampa 3D, AR/VR, videogiochi o pipeline CAD/CAM.
+**Descrizione:**  
+Questo script Python consente di convertire automaticamente file **.glb** in **.obj**, applicando una pipeline di pulizia, decimazione, conversione dei colori e scalatura. È pensato per creare modelli ottimizzati per stampa 3D, AR/VR, videogiochi o pipeline CAD/CAM.
 
-## 🔧 Funzionalità
+---
 
--   ✔️ Rimozione dei vertici duplicati\
--   ✔️ Conversione della texture in **vertex color**\
--   ✔️ Decimazione della mesh tramite *Quadric Edge Collapse*\
--   ✔️ Ridimensionamento uniforme: lato più lungo = `80 mm`\
--   ✔️ Esportazione in `.obj` con vertex color\
--   ✔️ Supporto per generazione automatica di cartelle per modello
+## 🔧 Funzionalità principali
+
+- **Rimozione vertici duplicati:** migliora la qualità del modello e riduce errori di rendering.  
+- **Conversione texture → vertex color:** tutte le texture vengono trasformate in colori per vertice, eliminando la necessità di file texture esterni.  
+- **Decimazione della mesh:** riduce il numero di poligoni mantenendo la qualità visiva tramite *Quadric Edge Collapse*.  
+- **Scalatura uniforme:** il lato più lungo della mesh viene ridimensionato a `80 mm` (modificabile tramite `TARGET_DIMENSION`).  
+- **Esportazione in `.obj`:** file finale con vertex color incorporato, compatibile con la maggior parte dei software 3D.  
+- **Supporto per sottocartelle:** opzionale, crea una cartella separata per ogni modello convertito.
+
+---
 
 ## 📁 Struttura delle cartelle
 
-    models/      → input (.glb)
-    exported/    → output (.obj)
+```
+models/      → input (.glb)
+exported/    → output (.obj)
+```
+
+Lo script legge tutti i file `.glb` nella cartella `models` e salva gli `.obj` in `exported/`.  
+Se l'opzione `-c true` è attiva, crea sottocartelle separate per ciascun modello.
+
+---
 
 ## 🛠 Installazione
 
-### Installare PyMeshLab
+1. Installare PyMeshLab:
+```bash
+pip install pymeshlab
+```
 
-    pip install pymeshlab
+2. Inserire i file `.glb` nella cartella `models/`.
 
-### Mettere i file .glb nella cartella:
+---
 
-    models/
-
-## ▶️ Utilizzo
+## ▶️ Utilizzo e spiegazione comandi
 
 ### Comando base
+```bash
+python script.py 50
+```
+- `50` → decimazione al 50% (riduce la complessità della mesh mantenendo qualità visiva).  
+- Output: file `.obj` salvati nella cartella `exported/`.
 
-    python script.py 50
+### Creazione sottocartelle per ciascun modello
+```bash
+python script.py 50 -c true
+```
+- `-c true` → crea una sottocartella per ogni modello con il file `.obj` all’interno.  
+- Utile per organizzare grandi quantità di modelli.
 
-### Con sottocartelle
+### Parametri
 
-    python script.py 50 -c true
+| Parametro              | Tipo    | Descrizione |
+|-----------------------|---------|-------------|
+| `<percentuale>`        | float   | Percentuale di decimazione (0–100). Più alto è il valore, più viene semplificata la mesh. |
+| `-c true/false`        | bool    | Se `true`, crea una sottocartella per ogni modello esportato. |
 
-## 📜 Script
+### Esempi pratici
 
-(incolla qui il tuo codice nello script finale GitHub)
+- Decimazione leggera (5%):
+```bash
+python script.py 5
+```
+- Decimazione intensa (70%) con sottocartelle:
+```bash
+python script.py 70 -c true
+```
+- Massima decimazione (100%) senza sottocartelle:
+```bash
+python script.py 100
+```
+
+---
+
+## 📏 Scalatura automatica
+
+Il lato più lungo della mesh viene scalato a **80 mm** (modificabile):
+```python
+TARGET_DIMENSION = 80.0
+```
+L’opzione `uniformflag=True` garantisce che le proporzioni rimangano corrette.
+
+---
 
 ## 📄 Licenza
 
-MIT License
+MIT License — libero utilizzo per scopi personali e commerciali.
