@@ -10,7 +10,6 @@ Questo script Python consente di convertire automaticamente file **.glb** in **.
 - **Rimozione vertici duplicati:** migliora la qualità del modello e riduce errori di rendering.  
 - **Conversione texture → vertex color:** tutte le texture vengono trasformate in colori per vertice, eliminando la necessità di file texture esterni.  
 - **Decimazione della mesh:** riduce il numero di poligoni mantenendo la qualità visiva tramite *Quadric Edge Collapse*.  
-- **Scalatura uniforme:** il lato più lungo della mesh viene ridimensionato a `80 mm` (modificabile tramite `TARGET_DIMENSION`).  
 - **Esportazione in `.obj`:** file finale con vertex color incorporato, compatibile con la maggior parte dei software 3D.  
 - **Supporto per sottocartelle:** opzionale, crea una cartella separata per ogni modello convertito.
 
