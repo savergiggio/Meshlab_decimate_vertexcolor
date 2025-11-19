@@ -39,10 +39,6 @@ ottimizzati per stampa 3D, AR/VR, videogiochi o pipeline CAD/CAM.
 
     python script.py 50 -c true
 
-## 📏 Scalatura
-
-Il lato più lungo viene scalato automaticamente a **80 mm**.
-
 ## 📜 Script
 
 (incolla qui il tuo codice nello script finale GitHub)
